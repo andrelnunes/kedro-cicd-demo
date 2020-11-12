@@ -2,8 +2,8 @@ ARG BASE_IMAGE=python:3.6-buster
 FROM $BASE_IMAGE
 
 # install project requirements
-COPY src/requirements.txt /tmp/requirements.txt
-RUN pip install -r /tmp/requirements.txt && rm -f /tmp/requirements.txt
+COPY src/requirements.in /tmp/requirements.in
+RUN pip install -r /tmp/requirements.in && rm -f /tmp/requirements.in
 
 # add kedro user
 ARG KEDRO_UID=999
