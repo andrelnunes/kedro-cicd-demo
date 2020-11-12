@@ -1,0 +1,6 @@
+context_path: sample_project.run.ProjectContext
+project_name: "SampleProject"
+project_version: "0.16.5"
+package_name: "sample_project"
+hooks:
+  - sample_project.hooks.project_hooks
