@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-# Data that can be reused for test (Fixture by pytest)
+
 @pytest.fixture(scope="module")
 def basic_data():
     basic_name_data = pd.DataFrame({"names": ["john", "mike", "david",]})
