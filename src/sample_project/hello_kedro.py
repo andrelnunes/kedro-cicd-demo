@@ -8,6 +8,7 @@ data_catalog = DataCatalog({"example_data": MemoryDataSet()})
 
 # Prepare first node
 def return_greeting():
+    print("Simple test operation")
     return "Hello"
 
 return_greeting_node = node(
