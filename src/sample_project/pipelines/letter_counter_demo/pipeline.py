@@ -27,29 +27,19 @@
 # limitations under the License.
 
 """
-This module contains an example test.
-
-Tests should be placed in ``src/tests``, in modules that mirror your
-project's structure, and in files named test_*.py. They are simply functions
-named ``test_*`` which test a unit of logic.
-
-To run the tests, run ``kedro test``.
+This is a boilerplate pipeline 'letter_counter'
+generated using Kedro 0.16.1
 """
-from pathlib import Path
 
-import pytest
+from kedro.pipeline import Pipeline, node
 
-from sample_project.run import ProjectContext
-
-
-@pytest.fixture
-def project_context():
-    return ProjectContext(str(Path.cwd()))
+from .nodes import upper_caser, count_letters
 
 
-class TestProjectContext:
-    def test_project_name(self, project_context):
-        assert project_context.project_name == "SampleProject"
-
-    def test_project_version(self, project_context):
-        assert project_context.project_version == "0.16.5"
+def create_pipeline(inputs="inputs", outputs="outputs"):
+    return Pipeline(
+        [
+            node(upper_caser, inputs=inputs, outputs="upper_cased_data"),
+            node(count_letters, inputs="upper_cased_data", outputs=outputs),
+        ]
+    )

@@ -1,3 +1,7 @@
 {
-    "python.pythonPath": "/Users/andremartins/miniconda3/envs/scraper/bin/python"
+    "python.pythonPath": "/Users/andremartins/miniconda3/envs/scraper/bin/python",
+    "python.testing.pytestArgs": [],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true
 }

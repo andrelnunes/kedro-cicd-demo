@@ -26,47 +26,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Project hooks."""
-from typing import Any, Dict, Iterable, Optional
+"""
+This is a boilerplate pipeline 'letter_counter'
+generated using Kedro 0.16.1
+"""
 
-from kedro.config import ConfigLoader
-from kedro.framework.hooks import hook_impl
-from kedro.io import DataCatalog
-from kedro.pipeline import Pipeline
-from kedro.versioning import Journal
+from kedro.pipeline import Pipeline, node
 
-
-class ProjectHooks:
-    @hook_impl
-    def register_pipelines(self) -> Dict[str, Pipeline]:
-        """Register the project's pipeline.
-
-        Returns:
-            A mapping from a pipeline name to a ``Pipeline`` object.
-
-        """
-        #letter_counter_demo = letter_counter_demo.create_pipeline()
-        return {
-            #"letter_counter": letter_counter_demo,
-            "__default__": Pipeline([])
-            }
-
-    @hook_impl
-    def register_config_loader(self, conf_paths: Iterable[str]) -> ConfigLoader:
-        return ConfigLoader(conf_paths)
-
-    @hook_impl
-    def register_catalog(
-        self,
-        catalog: Optional[Dict[str, Dict[str, Any]]],
-        credentials: Dict[str, Dict[str, Any]],
-        load_versions: Dict[str, str],
-        save_version: str,
-        journal: Journal,
-    ) -> DataCatalog:
-        return DataCatalog.from_config(
-            catalog, credentials, load_versions, save_version, journal
-        )
+from .nodes import upper_caser, count_letters
 
 
-project_hooks = ProjectHooks()
+def create_pipeline(inputs="inputs", outputs="outputs"):
+
+    return Pipeline(
+        [
+            node(upper_caser, inputs=inputs, outputs="upper_cased_data"),
+            node(count_letters, inputs="upper_cased_data", outputs=outputs),
+        ]
+    )

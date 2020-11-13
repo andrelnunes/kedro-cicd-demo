@@ -10,7 +10,6 @@ data_catalog = DataCatalog({"example_data": MemoryDataSet()})
 def return_greeting():
     return "Hello"
 
-
 return_greeting_node = node(
     return_greeting, inputs=None, outputs="my_salutation"
 )
